@@ -1,0 +1,29 @@
+{
+  "name": "project-nodejs-mogodb-react",
+  "version": "1.0.0",
+  "description": "project",
+  "keywords": [
+    "project",
+    "nodejs",
+    "mogodb",
+    "react"
+  ],
+  "homepage": "https://github.com/NgVanCu/project-nodejs-react-mogodb#readme",
+  "bugs": {
+    "url": "https://github.com/NgVanCu/project-nodejs-react-mogodb/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NgVanCu/project-nodejs-react-mogodb.git"
+  },
+  "license": "ISC",
+  "author": "CwrNguyen",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "5.2.1"
+  }
+}
