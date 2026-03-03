@@ -1,21 +1,20 @@
 require('dotenv').config()
+const fileUpload = require('express-fileupload');
 const express = require('express')
-const cors = require('cors') // 1. Nên cài thêm cái này (npm install cors)
+const cors = require('cors') 
 const app = express()
-
-// 2. Đổi tên biến thành apiRouter cho đúng nghĩa "Tổng quản"
+const port = process.env.PORT || 8080;
+app.use(fileUpload());
 const apiRouter = require('./routes/api'); 
 const connectDB = require('./configs/db')
 
-// Middleware
 app.use(cors()); 
 app.use(express.json()); 
 app.use(express.urlencoded({ extended: true })); 
 
-// Kết nối DB
 connectDB();
 
-const port = process.env.PORT || 8080;
+
 
 app.use('/api/v1', apiRouter);
 

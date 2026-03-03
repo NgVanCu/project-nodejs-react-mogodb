@@ -1,11 +1,13 @@
 const express = require('express');
-const router = express.Router();
+const routerAPI = express.Router();
 
-const authRouter = require('./auth'); 
-// const bookRouter = require('./book');
-
-router.use('/auth', authRouter); 
-
-// router.use('/books', bookRouter);
-
-module.exports = router;
+const {registerUser,loginUser} = require('../controllers/authController');
+const {getAllUserController,getUserById,PutUpdateUser,deleteUser} = require('../controllers/userController');
+routerAPI.post('/register',registerUser);
+routerAPI.post('/login', loginUser);
+// routerAPI.post('/file', uploadFile);
+routerAPI.get('/view-users', getAllUserController);
+routerAPI.get('/view-user/:id', getUserById);
+routerAPI.put('/update-user/:id', PutUpdateUser);
+routerAPI.delete('/delete-user/:id', deleteUser);
+module.exports = routerAPI;
