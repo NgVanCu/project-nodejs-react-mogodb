@@ -1,6 +1,6 @@
 const Book = require('../models/bookModel')
 const {uploadMultiFile,uploadSingleFile} = require('../services/fileService');
-const {createBookService,putBookService,deleteBookService} = require('../services/bookService')
+const {createBookService,getAllBooksService,putBookService,deleteBookService} = require('../services/bookService')
 const createBookController = async(req,res) =>{
     try{
         const {name,price,originalPrice,author,quantity,description,category} = req.body;
@@ -47,6 +47,17 @@ const createBookController = async(req,res) =>{
         })
     }catch(error){
         console.error(error);
+        res.status(500).json({message: 'Lỗi Server' + error.message})
+    }
+}
+const getAllBooksController = async(req, res) =>{
+    try{
+        const result = await getAllBooksService(req.query);
+        return res.status(200).json({
+            message: 'Lấy danh sách sách thành công',
+            data: result
+        });
+    }catch(error){
         res.status(500).json({message: 'Lỗi Server' + error.message})
     }
 }
@@ -117,4 +128,4 @@ const deleteBookController = async(req,res) =>{
         res.status(500).json({message: 'Lỗi Server' + error.message})
     }
 }
-module.exports = {createBookController,putUpdateBookController,deleteBookController};
+module.exports = {createBookController,getAllBooksController ,putUpdateBookController,deleteBookController};

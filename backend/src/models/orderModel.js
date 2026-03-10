@@ -25,31 +25,15 @@ const orderSchema = new mongoose.Schema({
         city: { type: String, required: true },
         phone: { type: String, required: true }, 
     },
-    itemsPrice:{
-        type: Number,
-        require: true,
-        default: 0
-    },
-    shippingPrice: { 
-        type: Number, 
-        required: true, 
-        default: 0 
-    },
     totalPrice: { 
         type: Number, 
         required: true, 
         default: 0 
     },
-    isPaid: { 
-        type: Boolean, 
-        required: true, 
-        default: false 
-    },
-    paidAt: { type: Date },  
     status: {
         type: String,
-        default: 'Pending',
-        enum: ['Pending', 'Delivered', 'Cancelled'] 
+        default: 'Chưa thanh toán',
+        enum: ['Chưa thanh toán', 'Đã thanh toán', 'Đã hủy'] 
     }  
 }, { 
     timestamps: true 

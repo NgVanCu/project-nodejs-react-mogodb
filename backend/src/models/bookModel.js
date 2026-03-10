@@ -3,7 +3,7 @@ const mongoose_delete = require('mongoose-delete');
 const bookSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: [true, 'Tên sản phẩm không được để trống'],
+        required: true,
         trim: true,
         index: true
     },

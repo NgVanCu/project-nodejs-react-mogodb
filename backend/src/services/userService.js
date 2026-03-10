@@ -1,9 +1,20 @@
 const userModel = require('../models/userModel');
 
-const getAllUsersService = async() =>{
+const getAllUsersService = async(queryString) =>{
     try{
-        const users = await userModel.find().select('-password');
-        return users;
+        const page = parseInt(queryString.page) || 1;
+        const limit = parseInt(queryString.limit) || 10;
+        const skip = (page - 1) * limit;
+        const result = await userModel.find().select('-password')
+            .skip(skip)
+            .limit(limit);
+        const totalItems = await userModel.countDocuments();
+        return {
+            results: result,
+            totalItems,
+            totalPages: Math.ceil(totalItems / limit),
+            currentPage: page
+        };
     }catch(error){
         throw error;
     }

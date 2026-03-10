@@ -1,4 +1,4 @@
-const {createCategoryService, getAllCategoriesService} = require('../services/categoryService');
+const {createCategoryService,getNameCategoryService,getAllCategoriesService} = require('../services/categoryService');
 
 const createCategoryController = async(req, res) =>{
     try{
@@ -16,8 +16,7 @@ const createCategoryController = async(req, res) =>{
         return res.status(500).json({message: 'Lỗi Server' + error.message})
     }
 }
-
-const getCategories = async (req, res, next) => {
+const getCategories = async (req, res) => {
     try {
         const categories = await getAllCategoriesService();
         res.status(200).json({
@@ -25,7 +24,7 @@ const getCategories = async (req, res, next) => {
             data: categories
         });
     } catch (error) {
-        next(error);
+        return res.status(500).json({message: 'Lỗi Server' + error.message})
     }
 };
 module.exports = {createCategoryController,getCategories}

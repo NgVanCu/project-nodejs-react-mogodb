@@ -12,6 +12,14 @@ const createCategoryService = async(data) =>{
         throw error
     }
 }
+const getNameCategoryService = async (id) => {
+    try {
+        const name = await categoryModel.findById(id).select('name');
+        return name;
+    } catch (error) {
+        throw error;
+    }
+};
 const getAllCategoriesService = async () => {
     try {
         return await categoryModel.find({ isActive: true }).select('_id name slug');
@@ -19,4 +27,4 @@ const getAllCategoriesService = async () => {
         throw error;
     }
 };
-module.exports = {createCategoryService, getAllCategoriesService};
+module.exports = {createCategoryService, getNameCategoryService,getAllCategoriesService };

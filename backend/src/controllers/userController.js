@@ -2,8 +2,8 @@ const {getAllUsersService, getUserServiceById,putUserUpdateService,deleteUserSer
 const {uploadSingleFile} = require('../services/fileService')
 const getAllUserController = async(req,res)=>{
     try{
-        const Users = await getAllUsersService();
-        if(!Users || Users.length === 0){
+        const Users = await getAllUsersService(req.query);
+        if(!Users.results || Users.results.length === 0){
             return res.status(200).json({
                 message: 'Hiện tại không có user nào',
                 data: []
